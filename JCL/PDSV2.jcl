@@ -1,0 +1,10 @@
+//00000000 JOB 0-000-0-000,'PDS/E Member Gen ',
+//             CLASS=D,REGION=0M,MSGCLASS=X,TIME=NOLIMIT,
+//             NOTIFY=&SYSUID
+//*
+//STEP01 EXEC PGM=IEFBR14
+//DD01   DD DSN=&SYSUID..PDSE.GENS,
+//          DSNTYPE=(LIBRARY,2),MAXGENS=5,
+//          RECFM=FB,LRECL=80,
+//          SPACE=(CYL,(1,1,1)),
+//          DISP=(NEW,CATLG,DELETE)

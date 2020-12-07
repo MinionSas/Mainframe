@@ -1,0 +1,71 @@
+//00000000 JOB 0-000-0-000,'ZIP Using Java',
+//             CLASS=D,REGION=0M,MSGCLASS=X,TIME=NOLIMIT,
+//             NOTIFY=&SYSUID
+//*
+//*
+//DELETE   EXEC PGM=IEFBR14
+//DD1     DD   DISP=(MOD,DELETE,DELETE),DSN=&SYSUID..TEST.JAVAZIP1,
+//             SPACE=(TRK,(1,1))
+//DD2     DD   DISP=(MOD,DELETE,DELETE),DSN=&SYSUID..TEST.JAVAZIP2,
+//             SPACE=(TRK,(1,1))
+//DD3     DD   DISP=(MOD,DELETE,DELETE),DSN=&SYSUID..TEST.JAVAZIP3,
+//             SPACE=(TRK,(1,1))
+//DD4     DD   DISP=(MOD,DELETE,DELETE),DSN=&SYSUID..TEST.JAVAZIP4,
+//             SPACE=(TRK,(1,1))
+//DD5     DD   DISP=(MOD,DELETE,DELETE),DSN=&SYSUID..TEST.JAVAZIP5,
+//             SPACE=(TRK,(1,1))
+//*
+//* Test 1
+//*
+//STEP01   EXEC JAVAZIP,
+//  OPTIONS='//DD:OUT01 //TEST.JCL(CA1*)'
+//OUT01    DD DSN=&SYSUID..TEST.JAVAZIP1,
+//            DISP=(,CATLG,DELETE),
+//            UNIT=3390,
+//            SPACE=(CYL,(15,15),RLSE)
+//SYSIN    DD DUMMY
+//*
+//* Test 2
+//*
+//STEP02   EXEC JAVAZIP,
+//  OPTIONS='//DD:OUT01 //TEST.JCL'
+//OUT01    DD DSN=&SYSUID..TEST.JAVAZIP2,
+//            DISP=(,CATLG,DELETE),
+//            UNIT=3390,
+//            SPACE=(CYL,(15,15),RLSE)
+//SYSIN    DD DUMMY
+//*
+//* Test 3
+//*
+//STEP03   EXEC JAVAZIP,
+//  OPTIONS='//DD:OUT01 //TEST.J*'
+//OUT01    DD DSN=&SYSUID..TEST.JAVAZIP3,
+//            DISP=(,CATLG,DELETE),
+//            UNIT=3390,
+//            SPACE=(CYL,(15,15),RLSE)
+//SYSIN    DD DUMMY
+//*
+//* Test 4
+//*
+//STEP04   EXEC JAVAZIP,
+//  OPTIONS='//DD:OUT01 //DD:IN01'
+//IN01     DD DISP=SHR,DSN=TEST.INPUT
+//OUT01    DD DSN=&SYSUID..TEST.JAVAZIP4,
+//            DISP=(,CATLG,DELETE),
+//            UNIT=3390,
+//            SPACE=(CYL,(15,15),RLSE)
+//SYSIN    DD DSN=TEST.PARM(PKZIPBIN),DISP=SHR
+//         DD *
+-NIA(*,TEST.FTP)
+//*
+//* Test 5
+//*
+//STEP05   EXEC JAVAZIP
+//IN01     DD DISP=SHR,DSN=TEST.INPUT
+//OUT01    DD DSN=&SYSUID..TEST.JAVAZIP5,
+//            DISP=(,CATLG,DELETE),
+//            UNIT=3390,
+//            SPACE=(CYL,(15,15),RLSE)
+//SYSIN    DD DSN=TEST.PARM(PKZIPBIN),DISP=SHR
+//         DD *
+-NIA(*,*.FTP)

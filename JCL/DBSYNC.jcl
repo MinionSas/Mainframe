@@ -1,0 +1,29 @@
+//00000000 JOB 0-000-0-000,'RACF DB Sync    ',
+//             CLASS=D,REGION=0M,MSGCLASS=X,TIME=NOLIMIT,
+//             NOTIFY=&SYSUID
+//**********************************************************************
+//*
+//* Synchronize RACF DBs
+//*
+//**********************************************************************
+//STEP01   EXEC PGM=IKJEFT1A,PARM='DBSYNC'
+//SYSEXEC  DD   DISP=SHR,DSN=REXX.LIBARY
+//INDD1    DD   DISP=SHR,DSN=RACF.OFFLOAD.LPAR1.SORT
+//INDD2    DD   DISP=SHR,DSN=RACF.OFFLOAD.LPAR2.SORT
+//OPTIONS  DD   *
+EXCLUDE GROUP
+EXCLUDE USER
+//OUTADD1  DD   SYSOUT=*
+//OUTADD2  DD   SYSOUT=*
+//OUTALT1  DD   SYSOUT=*
+//OUTALT2  DD   SYSOUT=*
+//OUTREM1  DD   SYSOUT=*
+//OUTREM2  DD   SYSOUT=*
+//OUTDEL1  DD   SYSOUT=*
+//OUTDEL2  DD   SYSOUT=*
+//OUTCLN1  DD   SYSOUT=*
+//OUTCLN2  DD   SYSOUT=*
+//OUTSCD1  DD   SYSOUT=*
+//OUTSCD2  DD   SYSOUT=*
+//SYSTSPRT DD   SYSOUT=*
+//SYSTSIN  DD   DUMMY
