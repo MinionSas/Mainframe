@@ -114,7 +114,7 @@ RTNCODE     DC XL1'00'       RETURN CODE
 **********************************************************************
 *
 CSIFIELD    DS 0F
-CSIFILTK    DC CL44'GHTISXM'     FILTER   KEY
+CSIFILTK    DC CL44'ALIASNA'     FILTER   KEY
 CSICATNM    DC CL44' '        CATALOG NAME OR BLANKS
 CSIRESNM    DC CL44' '        RESUME NAME OR BLANKS
 CSIDTYPD    DS 0CL16          ENTRY TYPES
